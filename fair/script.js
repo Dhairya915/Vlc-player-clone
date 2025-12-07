@@ -169,16 +169,27 @@ slider.addEventListener("click", e => {
 
 
 /***************forward and backward button******************************************* */
-// function forward(){
-   
-// }
-// function backward(){
-  
-// }
-// const backwardBtn = document.querySelector("#backwardBtn");
-// const forwardBtn = document.querySelector("#forwardBtn");
-// backwardBtn.addEventListener("click",backward);
-// forwardBtn.addEventListener("click",forward);
+function forward() {
+    currentPlayTime = Math.round(video.currentTime) + 5;
+    video.currentTime = currentPlayTime;
+    slider.setAttribute("value", currentPlayTime);
+    showToast("Forward by 5 sec");
+    let time = timeFormat(currentPlayTime);
+    currentTimeElem.innerText = time;
+}
+
+function backward() {
+    currentPlayTime = Math.round(video.currentTime) - 5;
+    video.currentTime = currentPlayTime;
+    slider.setAttribute("value", currentPlayTime);
+    showToast("Backward by 5 sec");
+    let time = timeFormat(currentPlayTime);
+    currentTimeElem.innerText = time;
+}
+const backwardBtn = document.querySelector("#backwardBtn");
+const forwardBtn = document.querySelector("#forwardBtn");
+backwardBtn.addEventListener("click",backward);
+forwardBtn.addEventListener("click",forward);
 
 /***************************control buttons***************************** */
 
@@ -217,4 +228,5 @@ function timeFormate(timeCount) {
         seconds = "0" + seconds
     time = `${hours}:${minutes}:${seconds}`;
     return time;
+
 }
